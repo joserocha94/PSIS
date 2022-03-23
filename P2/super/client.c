@@ -19,7 +19,6 @@ WINDOW *message_win;
 
 /* client has to know the paddles position and the ball position 
 so that he can draw them os the window */
-
 paddle_position_type paddles[MAX_PLAYERS];
 ball_position_type ball;
 
