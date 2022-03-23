@@ -41,7 +41,6 @@ void add_player(player **root, int new_port, char *new_address, int new_socket, 
 /* remove player from the game */
 void remove_player(player **root, int id)
 {
-
     if ((*root)->id == id)
     {
         player *to_remove = *root;
