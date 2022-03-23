@@ -30,10 +30,11 @@ player *root = NULL;
 int scoreboard[MAX_PLAYERS];
 int nr_players = 0;
 
-/* this thread is launch when the client is connected to the game. every client has it's own, 
+/*  this thread is launch when the client is connected to the game. every client has it's own, 
 so, the server has one of these listening each client's messages. Client's can DISCONNECT or 
 MOVE_PADDLE. In the first case the player is removed from the game; in the second the server
 broadcasts the new paddle position for everyone  */
+
 void player_comunication_thread(void *arg)
 {
     int player_socket = *(int*) arg;
