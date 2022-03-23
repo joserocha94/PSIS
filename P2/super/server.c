@@ -34,7 +34,6 @@ int nr_players = 0;
 so, the server has one of these listening each client's messages. Client's can DISCONNECT or 
 MOVE_PADDLE. In the first case the player is removed from the game; in the second the server
 broadcasts the new paddle position for everyone  */
-
 void player_comunication_thread(void *arg)
 {
     int player_socket = *(int*) arg;
@@ -150,9 +149,8 @@ void server_thread(void *arg)
     client_address.sin_family = AF_INET;
 
     int server_socket = *(int*) arg;
-    
+    int new_client_socket;    
     char buf[12];
-    int new_client_socket;
 
     while(1)
     {
