@@ -6,7 +6,6 @@
 #define SOCK_PORT 5000
 #define SOCK_ADDRESS "/tmp/sock_16"
 
-
 typedef struct player
 {
     int id;
@@ -17,7 +16,6 @@ typedef struct player
     struct player *next;
 } player;
 
-
 typedef struct ball_position_type 
 {
     char c;
@@ -26,13 +24,11 @@ typedef struct ball_position_type
     int left_ver_right; 
 } ball_position_type;
 
-
 typedef struct paddle_position_type
 {
     int x, y;
     int length;
 } paddle_position_type;
-
 
 typedef enum message_type 
 { 
@@ -41,7 +37,6 @@ typedef enum message_type
     PADDLE_MOVE, 
     DISCONNECT 
 } message_type;
-
 
 typedef struct message
 {
@@ -52,4 +47,3 @@ typedef struct message
     ball_position_type ball_pos;
     paddle_position_type paddles_pos[MAX_PLAYERS];
 } message;
-
