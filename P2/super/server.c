@@ -88,8 +88,7 @@ void player_comunication_thread(void *arg)
                         pthread_mutex_lock(&mux_send); 
                         send(curr->socket, &msg, sizeof(msg), 0);   
                         pthread_mutex_unlock(&mux_send); 
-                }
-    
+                    }
                     break;
 
                 case (DISCONNECT):
