@@ -14,10 +14,8 @@
 struct sockaddr_in server_address;
 struct sockaddr_in client_address;
 
-
 pthread_t server_thread_id;
 pthread_t client_thread_id;
-
 
 pthread_mutex_t mux_scoreboard;
 pthread_mutex_t mux_players;
@@ -25,15 +23,12 @@ pthread_mutex_t mux_paddles;
 pthread_mutex_t mux_ball;
 pthread_mutex_t mux_send;
 
-
 paddle_position_type paddles[MAX_PLAYERS];
 ball_position_type ball;
 player *root = NULL;
 
-
 int scoreboard[MAX_PLAYERS];
 int nr_players = 0;
-
 
 /* this thread is launch when the client is connected to the game. every client has it's own, 
 so, the server has one of these listening each client's messages. Client's can DISCONNECT or 
@@ -49,8 +44,7 @@ void player_comunication_thread(void *arg)
     int id;
     
     while (1)
-    {
-        
+    {    
         int op = recv(player_socket, &msg, sizeof(msg), 0);
         if (op == -1) 
             error("\nclient unreachable");
@@ -144,7 +138,6 @@ void player_comunication_thread(void *arg)
     }
 }
 
-
 /* this thread is lauched by the server main method and is responsible for keep on listening
 new CONNECT messages. The game has a maximum number of players which should be respected, so
 this thread deals with that number os players management */
@@ -199,9 +192,7 @@ void server_thread(void *arg)
             }
         }
     }
-
 }
-
 
 /* In the super pong game version is the server that has to calculate the ball_position from
 time to time. that work is made on the main method, which calculates the new ball position and
@@ -230,12 +221,10 @@ int main()
     if (op == -1)
         error("bind");
 
-
     /* listen */
     op = listen(server_socket, 10);
     if(op == -1) 
         error("listen");
-
 
     /* game setup */
     message msg_send;
@@ -255,7 +244,6 @@ int main()
 
     /* thread takes care of the incomming connections */
     pthread_create(&server_thread_id, NULL, server_thread, &server_socket);
-
 
     while(1)
     {
@@ -306,7 +294,6 @@ int main()
         else
             printf("\n[MAIN]: Waiting for players to get in...");
     }
-
 
     // close thread
     pthread_cancel(server_thread, NULL);
