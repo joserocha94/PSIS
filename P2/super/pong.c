@@ -7,7 +7,6 @@ void error(char *msg)
     exit(0);
 }
 
-
 /* add new client to the game*/
 void add_player(player **root, int new_port, char *new_address, int new_socket, int new_id)
 {
@@ -30,7 +29,7 @@ void add_player(player **root, int new_port, char *new_address, int new_socket, 
         *root = new;
         return;
     }
-
+    
     player *curr = *root;
     while (curr->next != NULL)
     {
@@ -38,7 +37,6 @@ void add_player(player **root, int new_port, char *new_address, int new_socket, 
     }
     curr->next = new;
 }
-
 
 /* remove player from the game */
 void remove_player(player **root, int id)
@@ -66,7 +64,6 @@ void remove_player(player **root, int id)
     }
 }
 
-
 /* coloca a bola numa posição random */
 void place_ball_random(ball_position_type * ball)
 {
@@ -78,7 +75,6 @@ void place_ball_random(ball_position_type * ball)
     ball->up_hor_down = rand() % 3-1; 
     ball->left_ver_right = rand() % 3-1 ; 
 }
-
 
 /*  calcula o movimento da bola tendo em conta duas situações: verifica se bate nalgum paddle (1); 
 e verifica se bate nos limites da janela (2); no caso de bater no paddle de um jogador identifica 
@@ -111,7 +107,6 @@ int move_ball(ball_position_type *ball, paddle_position_type *paddles){
     {
         ball->up_hor_down = rand() % 3 -1 ;
         ball->left_ver_right *= -1;
-
     }
     else
         ball->x = next_x;
@@ -124,10 +119,8 @@ int move_ball(ball_position_type *ball, paddle_position_type *paddles){
     else
         ball -> y = next_y;
 
-
     return 0;
 }
-
 
 /* desenha a bola */
 void draw_ball(WINDOW *win, ball_position_type * ball, int draw)
@@ -143,7 +136,6 @@ void draw_ball(WINDOW *win, ball_position_type * ball, int draw)
     wrefresh(win);
 }
 
-
 /* obtem player_id via player_socket */
 int get_player_id(player **root, int player_socket)
 {
@@ -151,7 +143,6 @@ int get_player_id(player **root, int player_socket)
         if (curr->socket == player_socket)
             return (curr->id);
 }
-
 
 /* move o paddle tendo em conta que este não pode bater noutros paddles (2)
 e que também não pode bater na bola (3); só há ponto se for a bola a bater no paddle! */
@@ -199,10 +190,7 @@ void move_paddle (paddle_position_type *paddles, ball_position_type *ball, int d
         paddles[index].x = old_x;
         paddles[index].y = old_y;   
     }
-
-
 }
-
 
 /* desenha o paddle */
 void draw_paddle(WINDOW *win, paddle_position_type paddle, int ch)
@@ -220,7 +208,6 @@ void draw_paddle(WINDOW *win, paddle_position_type paddle, int ch)
     }
     wrefresh(win);
 }
-
 
 /* coloca os valores a -1 para o inicio do jogo */
 void init_paddles(paddle_position_type *paddles, int scoreboard[MAX_PLAYERS])
